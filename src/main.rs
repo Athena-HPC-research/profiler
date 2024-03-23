@@ -1,18 +1,22 @@
 // Author: Apostolos Chalis 2024
+// Rust CLI system profiler
 use sysinfo::{
     Disks, Networks, System,
 };
 
 fn main() {
-    println!("System profiler Version 0.0.1\nApostolos Chalis 2024");
+    println!("System profiler Version 0.0.1\nApostolos Chalis 2024\n");
 
     let mut sys = System::new_all();
     sys.refresh_all();
-
+    
     // RAM usage
+    println!("==> RAM usage.");
     println!("Used memory : {} bytes / {} bytes", sys.used_memory(), sys.total_memory());
+    print!("\n");
 
     // CPU usage
+    println!("==> CPU usage.");
     sys.refresh_cpu();
     let mut counter = 0;
 
@@ -20,10 +24,11 @@ fn main() {
         counter+= 1;
         print!("CPU {}: {}% ",counter, cpu.cpu_usage());
     }
-
-    let networks = Networks::new_with_refreshed_list();
-
     print!("\n");
+  
+    // Network usage
+    println!("\n==> Network usage.");
+    let networks = Networks::new_with_refreshed_list();
 
     for (interface_name, data) in &networks {
         println!(
@@ -32,8 +37,10 @@ fn main() {
         data.total_transmitted(),
         );
     }
-
-    println!("=> disks:");
+    print!("\n");
+    
+    // Disks usage
+    println!("==> Disks usage.");
     let disks = Disks::new_with_refreshed_list();
     for disk in &disks {
         println!("{disk:?}");
