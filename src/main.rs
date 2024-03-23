@@ -6,9 +6,10 @@ fn main() {
     println!("System profiler Version 0.0.1\nApostolos Chalis 2024\n");
 
     let mut sys = System::new_all();
-    sys.refresh_all();
 
     loop {
+        sys.refresh_all();
+
         // Clear the terminal
         print!("\x1B[2J\x1B[1;1H");
 
