@@ -1,6 +1,6 @@
 // Author: Apostolos Chalis 2024
 use sysinfo::{
-    Components, Disks, Networks, System,
+    Disks, Networks, System,
 };
 
 fn main() {
