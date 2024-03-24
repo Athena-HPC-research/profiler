@@ -51,6 +51,7 @@ fn main() {
                 data.total_received(),
                 data.total_transmitted(),
             );
+            println!("Packets/S (PPS): {}", calculate_pps(data.total_received(), data.total_transmitted()));
         }
         print!("\n");
 
@@ -78,6 +79,16 @@ fn calculate_used_ram(u_ram:u64, t_ram:u64) -> u16{
     let div: f64 = u_ram as f64 / t_ram as f64;
     let percentage = (div * 100.0) as u16;
     percentage
+}
+
+fn calculate_pps(up_net:u64, down_net:u64) -> u64{
+    // up_net = Number of bytes that the network is sending
+    // down_net = Number of bytes that the network is receiving
+    
+    let total_net = up_net + down_net; 
+    let packets = total_net / 1518; // Packet size on ethernet connections TODO: Add packet
+                                    // calculations for other interfaces
+    packets
 }
 
 fn record(){
