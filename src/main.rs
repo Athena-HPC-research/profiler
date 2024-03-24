@@ -27,8 +27,9 @@ fn main() {
         print!("\x1B[2J\x1B[1;1H");
 
         // RAM usage
-        println!("==> RAM usage.");
+        println!("==> RAM.");
         println!("Used memory : {} bytes / {} bytes", sys.used_memory(), sys.total_memory());
+        println!("RAM usage: {}%", calculate_used_ram(sys.used_memory(), sys.total_memory()));
         print!("\n");
 
         // CPU usage
@@ -70,7 +71,17 @@ fn main() {
     }
 }
 
+fn calculate_used_ram(u_ram:u64, t_ram:u64) -> u16{
+    // u_ram = Used RAM 
+    // t_ram = Total RAM
+    
+    let div: f64 = u_ram as f64 / t_ram as f64;
+    let percentage = (div * 100.0) as u16;
+    percentage
+}
+
 fn record(){
-    println!("\nSession is being recorded."); 
+    println!("\nSession is being recorded.");
+
 }
 
