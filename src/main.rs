@@ -1,10 +1,23 @@
 use sysinfo::{Disks, Networks, System};
 use std::thread;
 use std::time::Duration;
+use std::fs; 
+use std::env; 
 
 fn main() {
     println!("System profiler Version 0.0.1\nApostolos Chalis 2024\n");
+   
+    let mut recording = false; 
+    let args: Vec<String> = env::args().collect();
+    let flag_exists = args.len(); 
 
+    if flag_exists == 2{
+        let flag = &args[1]; // supports one CLI argument right now ( --record)
+        if flag == "--record"{
+            recording = true; 
+        }
+    }
+      
     let mut sys = System::new_all();
 
     loop {
@@ -47,8 +60,17 @@ fn main() {
             println!("{disk:?}");
         }
 
+        // Control structure to funnel data on the record function
+        if recording == true{
+            record(); 
+        }
+
         // Sleep for a while before refreshing
         thread::sleep(Duration::from_secs(1)); // Adjust refresh rate as needed
     }
+}
+
+fn record(){
+    println!("\nSession is being recorded."); 
 }
 
