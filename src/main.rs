@@ -46,7 +46,8 @@ fn main() {
         print!("\n");
 
         let size_of_vector = cpu_usages.len() as u16; 
-        println!("CPU utilization: {}", calculate_cpu_total_usage(cpu_usages, size_of_vector)); 
+        let cpu_utilization = calculate_cpu_total_usage(cpu_usages, size_of_vector); 
+        println!("CPU utilization: {}", cpu_utilization); 
         print!("\n");
 
         // Network usage
@@ -73,7 +74,7 @@ fn main() {
 
         // Control structure to funnel data on the record function
         if recording == true{
-            record(); 
+             record(); 
         }
 
         // Sleep for a while before refreshing
@@ -113,8 +114,8 @@ fn calculate_pps(up_net:u64, down_net:u64) -> u64{
     packets
 }
 
-fn record(){
+fn record(ram_percentage:u16, cpu_utilization:u16, pps:u64){
     println!("\nSession is being recorded.");
-    kdk
+
 }
 
