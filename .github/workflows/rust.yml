@@ -18,5 +18,6 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build
       run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
+        # There are no available tests
+        #    - name: Run tests
+        #run: cargo test --verbose
