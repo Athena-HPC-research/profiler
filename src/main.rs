@@ -66,19 +66,17 @@ fn main() {
 
         // Disks usage
         println!("==> Disks usage.");
-        let disks = Disks::new_with_refreshed_list();
+        let disks = Disks::new_with_refreshed_list(); // TODO: Record that data too
 
         for disk in &disks {
             println!("{disk:?}");
         }
 
-        // Control structure to funnel data on the record function
         if recording == true{
              record(); 
         }
 
-        // Sleep for a while before refreshing
-        thread::sleep(Duration::from_secs(1)); // Adjust refresh rate as needed
+        thread::sleep(Duration::from_secs(1)); // Adjust refresh rate as needed TODO: Make it user adjustable
     }
 }
 
@@ -118,4 +116,3 @@ fn record(ram_percentage:u16, cpu_utilization:u16, pps:u64){
     println!("\nSession is being recorded.");
 
 }
-
