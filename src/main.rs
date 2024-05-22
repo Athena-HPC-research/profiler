@@ -1,7 +1,6 @@
 use sysinfo::{Disks, Networks, System};
 use std::thread;
 use std::time::Duration;
-use std::fs; 
 use std::env; 
 
 fn main() {
@@ -115,6 +114,5 @@ fn calculate_pps(up_net:u64, down_net:u64) -> u64{
 
 fn record(){
     println!("\nSession is being recorded.");
-    kdk
 }
 
